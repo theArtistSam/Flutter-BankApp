@@ -1,5 +1,6 @@
 import 'package:bank_app/screens/login.dart';
 import 'package:bank_app/main.dart';
+import 'package:bank_app/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,31 +79,16 @@ class StartScreen extends StatelessWidget {
           //const Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
-            child: GestureDetector(
+            child: AppButton(
+              label: 'Get Started',
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const LoginScreen()),
                 );
               },
-              child: Container(
-                height: 53,
-                decoration: BoxDecoration(
-                    color: accentColor, borderRadius: BorderRadius.circular(7)),
-                child: Center(
-                  child: Text(
-                    "Get Started",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
             ),
-          )
+          ),
         ],
       ),
     );

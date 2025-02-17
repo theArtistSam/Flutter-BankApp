@@ -1,5 +1,7 @@
 import 'package:bank_app/screens/home.dart';
 import 'package:bank_app/main.dart';
+import 'package:bank_app/widgets/app_button.dart';
+import 'package:bank_app/widgets/app_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -53,63 +55,11 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 32),
 
                   // Email Text Field
-                  Container(
-                    height: 70,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: borderColor, width: 1.5),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Center(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding:
-                              const EdgeInsets.only(left: 10, right: 10),
-                          counter: const Offstage(),
-                          hintText: "Email / Username",
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                        ),
-                        style: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-
+                  AppTextfield(hintText: 'Email / Username'),
                   const SizedBox(height: 30),
-
-                  // Password TextField
-                  Container(
-                    height: 70,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: borderColor, width: 1.5),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Center(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding:
-                              const EdgeInsets.only(left: 10, right: 10),
-                          counter: const Offstage(),
-                          hintText: "Password",
-                          hintStyle: GoogleFonts.montserrat(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                        ),
-                        style: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
+                  AppTextfield(
+                    hintText: "Password",
+                    isPassword: true,
                   ),
 
                   const SizedBox(height: 16),
@@ -121,7 +71,8 @@ class LoginScreen extends StatelessWidget {
                         value: false,
                         onChanged: (isChecked) {},
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                       ),
 
                       //const SizedBox(width: 5),
@@ -148,31 +99,16 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 33),
 
                   // Login Butttons
-                  GestureDetector(
+                  AppButton(
+                    label: 'Login',
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomeScreen()),
+                          builder: (context) => const HomeScreen(),
+                        ),
                       );
                     },
-                    child: Container(
-                      height: 53,
-                      decoration: BoxDecoration(
-                          color: accentColor,
-                          borderRadius: BorderRadius.circular(7)),
-                      child: Center(
-                        child: Text(
-                          "Login",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
                   ),
 
                   const SizedBox(
@@ -196,8 +132,9 @@ class LoginScreen extends StatelessWidget {
                   Container(
                     height: 53,
                     decoration: BoxDecoration(
-                        border: Border.all(width: 1.5, color: borderColor),
-                        borderRadius: BorderRadius.circular(7)),
+                      border: Border.all(width: 1.5, color: borderColor),
+                      borderRadius: BorderRadius.circular(7),
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -219,27 +156,26 @@ class LoginScreen extends StatelessWidget {
                   // No account?
                   //const SizedBox(height: 129),
                   const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Don't have an account? ",
+                  Center(
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
                         style: GoogleFonts.montserrat(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black,
                         ),
-                        textAlign: TextAlign.center,
+                        children: [
+                          TextSpan(
+                            text: "Don't have an account? ",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          TextSpan(
+                            text: "Register",
+                            style: TextStyle(color: accentColor),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "Register",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: accentColor,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
 
                   const SizedBox(height: 25)
